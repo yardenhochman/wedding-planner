@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תוכנית חתונה - ירדן ועדי 💍</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --sage: #8B9D77;
+    --sage-light: #A8B896;
+    --sage-bg: #F4F7F1;
+    --cream: #FDF8F0;
+    --gold: #C5A55A;
+    --gold-light: #E8D5A0;
+    --rose: #C4917B;
+    --rose-light: #E8C4B4;
+    --charcoal: #3A3A3A;
+    --text: #4A4A4A;
+    --text-light: #7A7A7A;
+    --white: #FFFFFF;
+    --red: #D4644A;
+    --green: #6B9E6B;
+    --border: #E8E0D4;
+  }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-light) 50%, var(--rose) 100%);
+    color: var(--white);
+    padding: 40px 20px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero h1 { font-size: 2.2em; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.5px; }
+  .hero .date-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* Countdown */
+  .countdown-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .countdown-item {
+    text-align: center;
+  }
+  .countdown-num {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--sage);
+    line-height: 1;
+  }
+  .countdown-label {
+    font-size: 0.75em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .countdown-sep {
+    font-size: 1.5em;
+    color: var(--border);
+    font-weight: 300;
+  }
+
+  /* Progress */
+  .progress-section {
+    padding: 20px 20px 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .progress-container {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .progress-header h3 {
+    font-size: 0.9em;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+  .progress-pct {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--sage);
+  }
+  .progress-track {
+    height: 10px;
+    background: var(--sage-bg);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sage), var(--sage-light));
+    border-radius: 10px;
+    transition: width 0.8s ease;
+  }
+  .progress-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.8em;
+    color: var(--text-light);
+  }
+
+  /* Navigation Tabs */
+  .nav-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 20px 20px 0;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  .nav-tab {
+    padding: 10px 18px;
+    border: none;
+    background: var(--white);
+    color: var(--text-light);
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    border-radius: 12px 12px 0 0;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    border-bottom: none;
+  }
+  .nav-tab:hover { color: var(--sage); background: var(--sage-bg); }
+  .nav-tab.active {
+    background: var(--sage);
+    color: var(--white);
+    border-color: var(--sage);
+  }
+
+  /* Main Content */
+  .main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+  .tab-panel {
+    display: none;
+    background: var(--white);
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--sage);
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .tab-panel.active { display: block; }
+
+  /* Week Section */
+  .week-section {
+    margin-bottom: 28px;
+  }
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--sage-bg);
+  }
+  .week-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--sage-bg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+  }
+  .week-title {
+    font-size: 1.15em;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .week-dates {
+    font-size: 0.82em;
+    color: var(--text-light);
+  }
+  .week-badge {
+    margin-right: auto;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-current { background: #FFF3E0; color: #E65100; }
+  .badge-upcoming { background: #E3F2FD; color: #1565C0; }
+  .badge-done { background: #E8F5E9; color: #2E7D32; }
+
+  /* Task Item */
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    background: var(--cream);
+    border-radius: 12px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .task-item:hover {
+    border-color: var(--sage-light);
+    box-shadow: 0 2px 8px rgba(139,157,119,0.1);
+  }
+  .task-item.completed {
+    opacity: 0.6;
+    background: var(--sage-bg);
+  }
+  .task-item.completed .task-name {
+    text-decoration: line-through;
+    color: var(--text-light);
+  }
+
+  .task-checkbox {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--sage-light);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .task-checkbox:hover { border-color: var(--sage); background: var(--sage-bg); }
+  .task-item.completed .task-checkbox {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .task-checkbox svg {
+    width: 14px; height: 14px;
+    stroke: white;
+    stroke-width: 3;
+    fill: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .task-item.completed .task-checkbox svg { opacity: 1; }
+
+  .task-body { flex: 1; min-width: 0; }
+  .task-name {
+    font-weight: 500;
+    font-size: 0.95em;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .task-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .task-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.72em;
+    font-weight: 500;
+  }
+  .tag-date { background: #FFF3E0; color: #E65100; }
+  .tag-category { background: #E8EDE4; color: var(--sage); }
+  .tag-priority-high { background: #FFEBEE; color: #C62828; }
+  .tag-priority-med { background: #FFF8E1; color: #F57F17; }
+  .tag-note { background: #F3E5F5; color: #7B1FA2; }
+  .tag-surprise { background: #FCE4EC; color: #C2185B; }
+
+  /* Milestone */
+  .milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--sage-bg), var(--cream));
+    border-radius: 12px;
+    border-right: 4px solid var(--gold);
+  }
+  .milestone-icon {
+    font-size: 1.5em;
+  }
+  .milestone-body { flex: 1; }
+  .milestone-name { font-weight: 600; color: var(--charcoal); }
+  .milestone-date { font-size: 0.82em; color: var(--text-light); }
+
+  /* Context Cards */
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .context-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .context-card h4 {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .context-card p {
+    font-size: 0.95em;
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+
+  /* Brainstorm section */
+  .brainstorm-area {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px dashed var(--border);
+    margin-top: 16px;
+  }
+  .brainstorm-area h4 {
+    color: var(--text-light);
+    font-size: 0.9em;
+    margin-bottom: 12px;
+  }
+  .brainstorm-list {
+    list-style: none;
+    padding: 0;
+  }
+  .brainstorm-list li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    background: var(--white);
+    border-radius: 8px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brainstorm-list li::before {
+    content: '💡';
+    font-size: 0.9em;
+  }
+
+  /* Search */
+  .search-section {
+    padding: 16px 20px 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .search-icon {
+    position: absolute;
+    right: 14px;
+    color: var(--text-light);
+    font-size: 1.1em;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: 12px 18px;
+    padding-right: 42px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95em;
+    color: var(--charcoal);
+    background: var(--white);
+    outline: none;
+    transition: all 0.2s;
+  }
+  .search-input::placeholder { color: var(--text-light); }
+  .search-input:focus {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(139,157,119,0.15);
+  }
+  .search-clear {
+    position: absolute;
+    left: 12px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.1em;
+    cursor: pointer;
+    display: none;
+    padding: 4px;
+    line-height: 1;
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+  .search-clear:hover { color: var(--charcoal); background: var(--sage-bg); }
+  .search-clear.visible { display: block; }
+
+  .search-results-info {
+    text-align: center;
+    padding: 12px;
+    font-size: 0.85em;
+    color: var(--text-light);
+    display: none;
+  }
+  .search-results-info.visible { display: block; }
+  .search-results-info .count { font-weight: 600; color: var(--sage); }
+
+  .search-highlight {
+    background: var(--gold-light);
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  .task-item.search-hidden,
+  .week-section.search-hidden,
+  .milestone-item.search-hidden {
+    display: none !important;
+  }
+
+  /* Footer */
+  .app-footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    font-size: 0.8em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6em; }
+    .countdown-bar { gap: 16px; }
+    .countdown-num { font-size: 1.4em; }
+    .nav-tabs { padding: 16px 12px 0; }
+    .nav-tab { padding: 8px 14px; font-size: 0.82em; }
+    .main-content { padding: 0 12px 30px; }
+    .tab-panel { padding: 16px; }
+    .task-item { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>ירדן ♥ עדי</h1>
+    <div class="date-badge">🗓️ 24 באפריל 2026 · כ״ו בניסן תשפ״ו</div>
+  </div>
+</div>
+
+<div class="countdown-bar" id="countdown">
+  <div class="countdown-item">
+    <div class="countdown-num" id="cd-days">--</div>
+    <div class="countdown-label">ימים</div>
+  </div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-item">
+    <div class="countdown-num" id="cd-weeks">--</div>
+    <div class="countdown-label">שבועות</div>
+  </div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-item">
+    <div class="countdown-num" id="cd-done">0</div>
+    <div class="countdown-label">משימות הושלמו</div>
+  </div>
+  <div class="countdown-sep">:</div>
+  <div class="countdown-item">
+    <div class="countdown-num" id="cd-total">0</div>
+    <div class="countdown-label">סה״כ משימות</div>
+  </div>
+</div>
+
+<div class="progress-section">
+  <div class="progress-container">
+    <div class="progress-header">
+      <h3>התקדמות כללית</h3>
+      <span class="progress-pct" id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
+    <div class="progress-stats">
+      <span id="progress-done">0 הושלמו</span>
+      <span id="progress-remaining">0 נותרו</span>
+    </div>
+  </div>
+</div>
+
+<div class="search-section">
+  <div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="search-input" placeholder="חיפוש משימות... (למשל: טבעות, RSVP, חליפה)" autocomplete="off">
+    <button class="search-clear" id="search-clear">✕</button>
+  </div>
+  <div class="search-results-info" id="search-info">
+    נמצאו <span class="count" id="search-count">0</span> תוצאות
+  </div>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" data-tab="timeline">📅 ציר זמן</button>
+  <button class="nav-tab" data-tab="tasks">✅ כל המשימות</button>
+  <button class="nav-tab" data-tab="context">📋 הקשר ופרטים</button>
+  <button class="nav-tab" data-tab="think">🧠 מה עוד?</button>
+</div>
+
+<div class="main-content">
+
+  <!-- TIMELINE TAB -->
+  <div class="tab-panel active" id="tab-timeline">
+
+    <!-- Week 1: Feb 17-21 -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">👔</div>
+        <div>
+          <div class="week-title">שבוע 1 — קניית בגדי חתן</div>
+          <div class="week-dates">17-21 בפברואר</div>
+        </div>
+        <span class="week-badge badge-current">השבוע</span>
+      </div>
+
+      <div class="task-item" data-id="1">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">קניית בגדי חתן — סילואט (דרך יפו 9)</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">📍 19/02 · יום חמישי · 12:00</span>
+            <span class="task-tag tag-category">👔 בגדי חתן</span>
+            <span class="task-tag tag-surprise">🤫 הפתעה לעדי</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 2: Feb 22-28 -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">🎯</div>
+        <div>
+          <div class="week-title">שבוע 2 — בגדי חתן + תכנון רווקים</div>
+          <div class="week-dates">22-28 בפברואר</div>
+        </div>
+        <span class="week-badge badge-upcoming">הבא</span>
+      </div>
+
+      <div class="task-item" data-id="2">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">קניית בגדי חתן — רוברטו (עזריאלי)</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">📍 23/02 · יום שני · 13:00</span>
+            <span class="task-tag tag-category">👔 בגדי חתן</span>
+            <span class="task-tag tag-surprise">🤫 הפתעה לעדי</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="3">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">בחירת חליפה סופית</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 25/02</span>
+            <span class="task-tag tag-category">👔 בגדי חתן</span>
+            <span class="task-tag tag-priority-med">⚡ עדיפות בינונית</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="4">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">תכנון מסיבת רווקים — תאריך, מיקום ומוזמנים</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">🔴 דדליין: 26/02 · יום חמישי</span>
+            <span class="task-tag tag-category">🎉 מסיבת רווקים</span>
+            <span class="task-tag tag-priority-high">🔥 עדיפות גבוהה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-item">
+        <div class="milestone-icon">🏁</div>
+        <div class="milestone-body">
+          <div class="milestone-name">אבן דרך: חליפה נבחרה + תכנון רווקים סגור</div>
+          <div class="milestone-date">עד סוף פברואר</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 3: Mar 1-7 -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">💍</div>
+        <div>
+          <div class="week-title">שבוע 3 — טבעות + RSVP</div>
+          <div class="week-dates">1-7 במרץ</div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="22">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">לבקש מארבל, מתן וגיא להיות עדים בחתונה</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 07/03</span>
+            <span class="task-tag tag-category">💒 כללי</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="5">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">תיאום עם עדי על טבעות — סגנון ומידות</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 03/03</span>
+            <span class="task-tag tag-category">💍 טבעות</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="6">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">קניית טבעות נישואין (~2,000 ₪)</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">📍 05/03 · יום חמישי</span>
+            <span class="task-tag tag-category">💍 טבעות</span>
+            <span class="task-tag tag-priority-high">🔥 עדיפות גבוהה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="7">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">הכנת הודעת אישור הגעה מהאקסל</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 07/03</span>
+            <span class="task-tag tag-category">📨 אישורי הגעה</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 4: Mar 8-14 -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">📨</div>
+        <div>
+          <div class="week-title">שבוע 4 — שליחת אישורי הגעה + קולאז׳</div>
+          <div class="week-dates">8-14 במרץ</div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="8">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">שליחת אישורי הגעה לכל האורחים</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">🔴 דדליין: 12/03 · יום חמישי</span>
+            <span class="task-tag tag-category">📨 אישורי הגעה</span>
+            <span class="task-tag tag-priority-high">🔥 עדיפות גבוהה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="9">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">בחירת תמונות לקולאז׳</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 15/03</span>
+            <span class="task-tag tag-category">🖼️ קולאז׳</span>
+            <span class="task-tag tag-priority-med">⚡ עדיפות בינונית</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-item">
+        <div class="milestone-icon">🏁</div>
+        <div class="milestone-body">
+          <div class="milestone-name">אבן דרך: טבעות נרכשו + RSVP יצא לדרך + תמונות נבחרו</div>
+          <div class="milestone-date">עד אמצע מרץ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 5-6: Mar 15-28 -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">🎨</div>
+        <div>
+          <div class="week-title">שבועות 5-6 — קולאז׳ + מעקב אישורי הגעה</div>
+          <div class="week-dates">15-28 במרץ</div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="10">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">עיצוב 2 קולאז׳ים ב-Canva</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 25/03</span>
+            <span class="task-tag tag-category">🖼️ קולאז׳</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="11">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">מעקב אישורי הגעה — תזכורות</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">22-28/03</span>
+            <span class="task-tag tag-category">📨 אישורי הגעה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="12">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">סגירת קונספט רווקים + הזמנת חברים</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד סוף מרץ</span>
+            <span class="task-tag tag-category">🎉 מסיבת רווקים</span>
+            <span class="task-tag tag-note">👶 להתחשב בחברים הורים</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 7-8: Mar 29 - Apr 10 -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">🎉</div>
+        <div>
+          <div class="week-title">שבועות 7-8 — מסיבת רווקים + סגירת פרטים</div>
+          <div class="week-dates">29 מרץ - 10 אפריל</div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="13">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">מסיבת רווקים!</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">🎯 יעד: סוף מרץ - תחילת אפריל</span>
+            <span class="task-tag tag-category">🎉 מסיבת רווקים</span>
+            <span class="task-tag tag-note">⚠️ לוודא שאין התנגשות עם פסח (2-9/04)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="14">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">סגירת רשימת אורחים סופית</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 05/04</span>
+            <span class="task-tag tag-category">📨 אישורי הגעה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="15">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">הדפסת/הזמנת קולאז׳ים</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 05/04</span>
+            <span class="task-tag tag-category">🖼️ קולאז׳</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-item">
+        <div class="milestone-icon">🏁</div>
+        <div class="milestone-body">
+          <div class="milestone-name">אבן דרך: רווקים בוצעו + רשימה סופית סגורה + קולאז׳ים בהדפסה</div>
+          <div class="milestone-date">עד 10 באפריל</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 9: Apr 11-17 (Passover) -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">🫓</div>
+        <div>
+          <div class="week-title">שבוע 9 — פסח (הפוגה מתוכננת)</div>
+          <div class="week-dates">11-17 באפריל (חופשת פסח)</div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="16">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">הפוגה — רק דברים דחופים</div>
+          <div class="task-meta">
+            <span class="task-tag tag-note">🫓 שבוע פסח — להוריד קצב</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="17">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">אישור לוגיסטיקה — ספקים, הסעות, לו״ז</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 17/04</span>
+            <span class="task-tag tag-priority-med">⚡ תכנון שקט</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week 10: Apr 18-24 THE WEEK -->
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">💒</div>
+        <div>
+          <div class="week-title">שבוע 10 — השבוע של החתונה!</div>
+          <div class="week-dates">18-24 באפריל</div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="18">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">תיקוני חליפה אחרונים (אם צריך)</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 20/04</span>
+            <span class="task-tag tag-category">👔 בגדי חתן</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="19">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">תזכורת אחרונה לאורחים</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">20-21/04</span>
+            <span class="task-tag tag-category">📨 אישורי הגעה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="20">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">דיווח מספרים סופיים לקייטרינג</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">עד 22/04</span>
+            <span class="task-tag tag-priority-high">🔥 קריטי</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-item" data-id="21">
+        <div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="task-body">
+          <div class="task-name">בדיקת רשימה אחרונה — מה שכחנו?</div>
+          <div class="task-meta">
+            <span class="task-tag tag-date">22-23/04</span>
+            <span class="task-tag tag-note">💭 סבב חשיבה אחרון</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone-item">
+        <div class="milestone-icon">💒</div>
+        <div class="milestone-body">
+          <div class="milestone-name">🎊 יום החתונה! 🎊</div>
+          <div class="milestone-date">24 באפריל 2026</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ALL TASKS TAB -->
+  <div class="tab-panel" id="tab-tasks">
+    <h3 style="margin-bottom:16px; color: var(--charcoal);">כל המשימות לפי קטגוריה</h3>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">👔</div>
+        <div><div class="week-title">בגדי חתן</div>
+        <div class="week-dates">מכנס ירוק בקבוק/חאקי/ורוד עתיק · חולצה לבנה · נעליים חומות</div></div>
+      </div>
+      <div class="task-item" data-id="1"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">קניית בגדים — סילואט (19/02)</div><div class="task-meta"><span class="task-tag tag-surprise">🤫 הפתעה לעדי</span></div></div></div>
+      <div class="task-item" data-id="2"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">קניית בגדים — רוברטו (23/02)</div><div class="task-meta"><span class="task-tag tag-surprise">🤫 הפתעה לעדי</span></div></div></div>
+      <div class="task-item" data-id="3"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">בחירת חליפה סופית (עד 25/02)</div></div></div>
+      <div class="task-item" data-id="18"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">תיקוני חליפה אחרונים (עד 20/04)</div></div></div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">💍</div>
+        <div><div class="week-title">טבעות</div>
+        <div class="week-dates">תקציב: ~2,000 ₪ לשניכם · בתיאום עם עדי</div></div>
+      </div>
+      <div class="task-item" data-id="5"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">תיאום טבעות עם עדי (עד 03/03)</div></div></div>
+      <div class="task-item" data-id="6"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">קניית טבעות (05/03)</div></div></div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">📨</div>
+        <div><div class="week-title">אישורי הגעה ואורחים</div>
+        <div class="week-dates">לשאול: כמות, ילדים, הגבלות קולינריות · יש אקסל קיים</div></div>
+      </div>
+      <div class="task-item" data-id="7"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">הכנת הודעת אישור הגעה (עד 07/03)</div></div></div>
+      <div class="task-item" data-id="8"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">שליחת אישורי הגעה (דדליין: 12/03)</div></div></div>
+      <div class="task-item" data-id="11"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">מעקב + תזכורות (22-28/03)</div></div></div>
+      <div class="task-item" data-id="14"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">סגירת רשימה סופית (עד 05/04)</div></div></div>
+      <div class="task-item" data-id="19"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">תזכורת אחרונה (20-21/04)</div></div></div>
+      <div class="task-item" data-id="20"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">מספרים סופיים לקייטרינג (עד 22/04)</div></div></div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">🎉</div>
+        <div><div class="week-title">מסיבת רווקים</div>
+        <div class="week-dates">באחריותך · קמפינג/קנטה בים · חברים הורים טריים</div></div>
+      </div>
+      <div class="task-item" data-id="4"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">תכנון רווקים — תאריך, מיקום, מוזמנים (דדליין: 26/02)</div></div></div>
+      <div class="task-item" data-id="12"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">קונספט סופי + הזמנות (עד סוף מרץ)</div></div></div>
+      <div class="task-item" data-id="13"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">מסיבת הרווקים! (סוף מרץ/תחילת אפריל)</div></div></div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">🖼️</div>
+        <div><div class="week-title">קולאז׳ תמונות</div>
+        <div class="week-dates">שני קולאז׳ים נפרדים · עיצוב ב-Canva</div></div>
+      </div>
+      <div class="task-item" data-id="9"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">בחירת תמונות (עד 15/03)</div></div></div>
+      <div class="task-item" data-id="10"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">עיצוב ב-Canva (עד 25/03)</div></div></div>
+      <div class="task-item" data-id="15"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">הדפסה/הזמנה (עד 05/04)</div></div></div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-icon">💒</div>
+        <div><div class="week-title">כללי</div>
+        <div class="week-dates">משימות שלא שייכות לקטגוריה ספציפית</div></div>
+      </div>
+      <div class="task-item" data-id="22"><div class="task-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="task-body"><div class="task-name">לבקש מארבל, מתן וגיא להיות עדים (עד 07/03)</div></div></div>
+    </div>
+  </div>
+
+  <!-- CONTEXT TAB -->
+  <div class="tab-panel" id="tab-context">
+    <h3 style="margin-bottom:16px; color: var(--charcoal);">פרטי הקשר חשובים</h3>
+    <div class="context-grid">
+      <div class="context-card">
+        <h4>📍 מיקום עבודה</h4>
+        <p>רוטשילד, תל אביב</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">גיחה לחנויות בצהריים — סיבובי הבגדים מתוכננים סביב זה</p>
+      </div>
+      <div class="context-card">
+        <h4>📊 סטטוס RSVP</h4>
+        <p>יש קובץ אקסל קיים</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">צריך רק לגזור ממנו את ההודעה. לשאול: כמות, ילדים, הגבלות קולינריות</p>
+      </div>
+      <div class="context-card">
+        <h4>👶 מדיניות ילדים</h4>
+        <p>בעד ילדים!</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">צריכים לדעת כמות למטרות לוגיסטיקה — כיסאות ומנות</p>
+      </div>
+      <div class="context-card">
+        <h4>🎉 מסיבת רווקים</h4>
+        <p>באחריות החתן (אתה!)</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">חברים הורים טריים — להתחשב בבחירת קונספט. אופציות: קמפינג / קנטה בים</p>
+      </div>
+      <div class="context-card">
+        <h4>👔 בגדי חתן — ויז׳ן</h4>
+        <p>חליפה לא קלאסית</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">מכנס: ירוק בקבוק/חאקי/ורוד עתיק · חולצה לבנה נושמת · נעליים חומות</p>
+      </div>
+      <div class="context-card">
+        <h4>🤫 תזכורת חשובה</h4>
+        <p>החליפה = הפתעה לעדי!</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">לשמור על סודיות מוחלטת. אל תשתפו תמונות 😉</p>
+      </div>
+      <div class="context-card">
+        <h4>💍 תקציב טבעות</h4>
+        <p>~2,000 ₪ לשניכם</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">בסנכרון מול עדי — סגנון, חומר ומידות</p>
+      </div>
+      <div class="context-card">
+        <h4>🫓 פסח 2026</h4>
+        <p>2-9 באפריל (משוער)</p>
+        <p style="font-size:0.82em; color:var(--text-light); margin-top:4px;">מסיבת רווקים חייבת להיות לפני! + שבוע שקט יחסית</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THINK TAB -->
+  <div class="tab-panel" id="tab-think">
+    <h3 style="margin-bottom:8px; color: var(--charcoal);">מה עוד לא חשבנו עליו?</h3>
+    <p style="font-size:0.88em; color:var(--text-light); margin-bottom:20px;">
+      רשימה של דברים שאולי שווה לחשוב עליהם — לא בהכרח חסרים, אבל כדאי לוודא:
+    </p>
+
+    <div class="brainstorm-area">
+      <h4>נושאים לבחינה (תוסיף משימות בהמשך לפי הצורך)</h4>
+      <ul class="brainstorm-list">
+        <li>DJ / מוזיקה / פלייליסט — סגור?</li>
+        <li>צלם/מת — נבחר? חוזה חתום?</li>
+        <li>הזמנות מודפסות / דיגיטליות — צריך?</li>
+        <li>סידורי ישיבה — מתי מתחילים לעבוד על זה?</li>
+        <li>עיצוב ופרחים — מי אחראי?</li>
+        <li>הסעות לאורחים — רלוונטי?</li>
+        <li>מתנות לאורחים / שולחן מתוקים</li>
+        <li>שמלת כלה / תיאום לוקים — סגור אצל עדי?</li>
+        <li>רב / מסדר קידושין — נבחר?</li>
+        <li>כתובה — סגנון ועיצוב</li>
+        <li>ביטוח אירוע — שווה?</li>
+        <li>טיפולי יופי / ספר — לתאם מראש</li>
+        <li>מתנות לשושבינים/ות</li>
+        <li>רישיון נישואין — להוציא בזמן!</li>
+        <li>ריקוד ראשון — לתרגל?</li>
+        <li>נאומים / הקראות — לתאם עם מי שירצה</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="app-footer">
+  ירדן ♥ עדי · 24.04.2026 · נבנה באהבה 💍
+</div>
+
+<script>
+// ===== State Management =====
+const STORAGE_KEY = 'wedding_planner_state';
+
+function getState() {
+  try {
+    const saved = window._appState;
+    return saved || { completed: {} };
+  } catch { return { completed: {} }; }
+}
+
+function saveState(state) {
+  window._appState = state;
+}
+
+// ===== Countdown =====
+function updateCountdown() {
+  const wedding = new Date(2026, 3, 24); // April 24, 2026
+  const now = new Date();
+  const diff = wedding - now;
+  const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+  const weeks = Math.floor(days / 7);
+
+  document.getElementById('cd-days').textContent = days;
+  document.getElementById('cd-weeks').textContent = weeks;
+}
+
+// ===== Tasks =====
+function initTasks() {
+  const state = getState();
+  const tasks = document.querySelectorAll('.task-item[data-id]');
+
+  tasks.forEach(task => {
+    const id = task.dataset.id;
+    if (state.completed[id]) {
+      task.classList.add('completed');
+    }
+
+    task.addEventListener('click', () => {
+      const currentState = getState();
+      if (task.classList.contains('completed')) {
+        task.classList.remove('completed');
+        delete currentState.completed[id];
+      } else {
+        task.classList.add('completed');
+        currentState.completed[id] = true;
+      }
+      saveState(currentState);
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const allTasks = new Set();
+  document.querySelectorAll('#tab-timeline .task-item[data-id]').forEach(t => allTasks.add(t.dataset.id));
+  const total = allTasks.size;
+
+  const state = getState();
+  const done = Object.keys(state.completed).filter(id => allTasks.has(id)).length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-done').textContent = done + ' הושלמו';
+  document.getElementById('progress-remaining').textContent = (total - done) + ' נותרו';
+  document.getElementById('cd-done').textContent = done;
+  document.getElementById('cd-total').textContent = total;
+
+  // Sync checkboxes across tabs
+  document.querySelectorAll('.task-item[data-id]').forEach(task => {
+    if (state.completed[task.dataset.id]) {
+      task.classList.add('completed');
+    } else {
+      task.classList.remove('completed');
+    }
+  });
+}
+
+// ===== Tabs =====
+function initTabs() {
+  const tabs = document.querySelectorAll('.nav-tab');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+}
+
+// ===== Search =====
+function initSearch() {
+  const input = document.getElementById('search-input');
+  const clearBtn = document.getElementById('search-clear');
+  const info = document.getElementById('search-info');
+  const countEl = document.getElementById('search-count');
+
+  let debounceTimer;
+
+  input.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => performSearch(input.value), 150);
+    clearBtn.classList.toggle('visible', input.value.length > 0);
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.classList.remove('visible');
+    performSearch('');
+    input.focus();
+  });
+
+  // Ctrl+K / Cmd+K shortcut to focus search
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === input) {
+      input.value = '';
+      clearBtn.classList.remove('visible');
+      performSearch('');
+      input.blur();
+    }
+  });
+
+  function performSearch(query) {
+    const q = query.trim().toLowerCase();
+
+    // Get active tab panel
+    const activePanel = document.querySelector('.tab-panel.active');
+
+    // Reset all highlights and visibility in ALL panels
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.querySelectorAll('.task-item, .week-section, .milestone-item').forEach(el => {
+        el.classList.remove('search-hidden');
+      });
+      // Remove highlight spans
+      panel.querySelectorAll('.search-highlight').forEach(span => {
+        const parent = span.parentNode;
+        parent.replaceChild(document.createTextNode(span.textContent), span);
+        parent.normalize();
+      });
+    });
+
+    if (!q) {
+      info.classList.remove('visible');
+      return;
+    }
+
+    let totalMatches = 0;
+
+    // Search within all tab panels
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      const taskItems = panel.querySelectorAll('.task-item[data-id]');
+      const matchedIds = new Set();
+
+      taskItems.forEach(task => {
+        const nameEl = task.querySelector('.task-name');
+        const metaEl = task.querySelector('.task-meta');
+        const text = (nameEl ? nameEl.textContent : '') + ' ' + (metaEl ? metaEl.textContent : '');
+
+        if (text.toLowerCase().includes(q)) {
+          matchedIds.add(task.dataset.id);
+          task.classList.remove('search-hidden');
+
+          // Highlight in task name
+          if (nameEl) highlightText(nameEl, q);
+        } else {
+          task.classList.add('search-hidden');
+        }
+      });
+
+      // Count unique matches from timeline tab
+      if (panel.id === 'tab-timeline') {
+        totalMatches = matchedIds.size;
+      }
+
+      // Hide week sections that have no visible tasks
+      panel.querySelectorAll('.week-section').forEach(section => {
+        const visibleTasks = section.querySelectorAll('.task-item[data-id]:not(.search-hidden)');
+        if (visibleTasks.length === 0) {
+          section.classList.add('search-hidden');
+        } else {
+          section.classList.remove('search-hidden');
+        }
+      });
+
+      // Hide milestones during search
+      panel.querySelectorAll('.milestone-item').forEach(m => {
+        m.classList.add('search-hidden');
+      });
+    });
+
+    // Also search context cards and brainstorm items
+    const contextCards = document.querySelectorAll('.context-card');
+    contextCards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(q)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const brainstormItems = document.querySelectorAll('.brainstorm-list li');
+    brainstormItems.forEach(li => {
+      const text = li.textContent.toLowerCase();
+      if (text.includes(q)) {
+        li.style.display = '';
+      } else {
+        li.style.display = 'none';
+      }
+    });
+
+    countEl.textContent = totalMatches;
+    info.classList.add('visible');
+  }
+
+  function highlightText(element, query) {
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(node => {
+      const text = node.textContent;
+      const lower = text.toLowerCase();
+      const idx = lower.indexOf(query.toLowerCase());
+      if (idx === -1) return;
+
+      const before = text.substring(0, idx);
+      const match = text.substring(idx, idx + query.length);
+      const after = text.substring(idx + query.length);
+
+      const span = document.createElement('span');
+      span.className = 'search-highlight';
+      span.textContent = match;
+
+      const parent = node.parentNode;
+      const frag = document.createDocumentFragment();
+      if (before) frag.appendChild(document.createTextNode(before));
+      frag.appendChild(span);
+      if (after) frag.appendChild(document.createTextNode(after));
+      parent.replaceChild(frag, node);
+    });
+  }
+}
+
+// ===== Init =====
+window._appState = { completed: {} };
+updateCountdown();
+initTabs();
+initTasks();
+initSearch();
+setInterval(updateCountdown, 60000);
+</script>
+</body>
+</html>
